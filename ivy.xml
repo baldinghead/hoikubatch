@@ -29,5 +29,6 @@
      <dependency org="org.apache.tika" name="tika-core" rev="1.5"/>
      <dependency org="org.apache.tika" name="tika-parsers" rev="1.5"/>
      <dependency org="org.apache.commons" name="commons-lang3" rev="3.3.2"/>
+     <dependency org="junit" name="junit" rev="4.11"/>
   </dependencies>
 </ivy-module>
