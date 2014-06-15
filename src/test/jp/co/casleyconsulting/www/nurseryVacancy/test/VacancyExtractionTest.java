@@ -6,12 +6,12 @@ import java.util.List;
 
 import jp.co.casleyconsulting.www.nurseryVacancy.constants.ExtractType;
 import jp.co.casleyconsulting.www.nurseryVacancy.dto.NurseryVacancyInfo;
-import jp.co.casleyconsulting.www.nurseryVacancy.factory.ExtractorFactory;
+import jp.co.casleyconsulting.www.nurseryVacancy.factory.VacancyExtractorFactory;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class ExtractionTest {
+public class VacancyExtractionTest {
 
 	@BeforeClass
 	public static void setup() {
@@ -28,7 +28,7 @@ public class ExtractionTest {
 	@Test
 	public void testMinato() {
 
-		List<NurseryVacancyInfo> extracted = ExtractorFactory
+		List<NurseryVacancyInfo> extracted = VacancyExtractorFactory
 						.create(ExtractType.MINATO)
 						.extract("http://www.city.minato.tokyo.jp/kodomo/kodomo/kodomo/hoikuen/aki.html");
 
@@ -43,7 +43,7 @@ public class ExtractionTest {
 	@Test
 	public void testMeguro() {
 
-		List<NurseryVacancyInfo> extracted = ExtractorFactory
+		List<NurseryVacancyInfo> extracted = VacancyExtractorFactory
 						.create(ExtractType.MEGURO)
 						.extract("http://www.city.meguro.tokyo.jp/kurashi/kosodate/hoikuen/akijokyo.html");
 

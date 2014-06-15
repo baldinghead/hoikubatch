@@ -1,4 +1,4 @@
-package jp.co.casleyconsulting.www.nurseryVacancy.extactor;
+package jp.co.casleyconsulting.www.nurseryVacancy.extactor.vacancy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +11,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
+ * 練馬区用Extractor
+ *
  * @author FUJIWARA
- * 
+ *
  */
-public class SetagayaExtractor extends GeneralExtractor {
+public class NerimaExtractor extends GeneralExtractor {
 
 	/*
 	 * (非 Javadoc)
@@ -27,25 +29,31 @@ public class SetagayaExtractor extends GeneralExtractor {
 		Document doc = getDocument(url);
 
 		List<NurseryVacancyInfo> resList = new ArrayList<>();
-		Elements tables = doc.getElementsByClass("table03");
+		Elements tables = doc.getElementsByClass("table01");
 
 		for (Element table : tables) {
 			Elements trs = table.getElementsByTag("tr");
-			List<Element> trsList = trs.subList(1, trs.size());
+			List<Element> trsList = trs.subList(3, trs.size());
+
 			for (Element tr : trsList) {
 
 				Elements tds = tr.getElementsByTag("td");
 
-				if (tds.size() > 5 && StringUtils.isNotEmpty(tds.get(1).text())) {
+				String name = tds.get(0).select("a").text();
+				if (tds.size() > 10 && StringUtils.isNotEmpty(name)) {
+
+					if (name.trim().equals("延長保育")) {
+						break;
+					}
 
 					NurseryVacancyInfo info = new NurseryVacancyInfo();
-					info.name = tds.get(1).text();
-					info.zeroCnt = tds.get(4).text().trim();
-					info.firstCnt = tds.get(5).text().trim();
-					info.secondCnt = tds.get(6).text().trim();
-					info.thirdCnt = tds.get(7).text().trim();
-					info.fourthCnt = tds.get(8).text().trim();
-					info.fifthCnt = tds.get(9).text().trim();
+					info.name = tds.get(0).select("a").text();
+					info.zeroCnt = tds.get(3).text().trim();
+					info.firstCnt = tds.get(4).text().trim();
+					info.secondCnt = tds.get(5).text().trim();
+					info.thirdCnt = tds.get(6).text().trim();
+					info.fourthCnt = tds.get(7).text().trim();
+					info.fifthCnt = tds.get(8).text().trim();
 
 					resList.add(info);
 				}

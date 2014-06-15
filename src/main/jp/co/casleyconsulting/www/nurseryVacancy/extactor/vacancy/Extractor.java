@@ -1,4 +1,4 @@
-package jp.co.casleyconsulting.www.nurseryVacancy.extactor;
+package jp.co.casleyconsulting.www.nurseryVacancy.extactor.vacancy;
 
 import java.util.List;
 

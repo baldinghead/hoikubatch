@@ -1,4 +1,4 @@
-package jp.co.casleyconsulting.www.nurseryVacancy.extactor;
+package jp.co.casleyconsulting.www.nurseryVacancy.extactor.vacancy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import org.jsoup.select.Elements;
  * @author FUJIWARA
  * 
  */
-public class TaitoExtractor extends GeneralExtractor {
+public class SetagayaExtractor extends GeneralExtractor {
 
 	/*
 	 * (非 Javadoc)
@@ -27,7 +27,7 @@ public class TaitoExtractor extends GeneralExtractor {
 		Document doc = getDocument(url);
 
 		List<NurseryVacancyInfo> resList = new ArrayList<>();
-		Elements tables = doc.getElementsByClass("table01");
+		Elements tables = doc.getElementsByClass("table03");
 
 		for (Element table : tables) {
 			Elements trs = table.getElementsByTag("tr");
@@ -39,15 +39,13 @@ public class TaitoExtractor extends GeneralExtractor {
 				if (tds.size() > 5 && StringUtils.isNotEmpty(tds.get(1).text())) {
 
 					NurseryVacancyInfo info = new NurseryVacancyInfo();
-
-					info.name = tds.get(0).text();
-
-					info.zeroCnt = tds.get(1).text().trim();
-					info.firstCnt = tds.get(2).text().trim();
-					info.secondCnt = tds.get(3).text().trim();
-					info.thirdCnt = tds.get(4).text().trim();
-					info.fourthCnt = tds.get(5).text().trim();
-					info.fifthCnt = tds.get(6).text().trim();
+					info.name = tds.get(1).text();
+					info.zeroCnt = tds.get(4).text().trim();
+					info.firstCnt = tds.get(5).text().trim();
+					info.secondCnt = tds.get(6).text().trim();
+					info.thirdCnt = tds.get(7).text().trim();
+					info.fourthCnt = tds.get(8).text().trim();
+					info.fifthCnt = tds.get(9).text().trim();
 
 					resList.add(info);
 				}

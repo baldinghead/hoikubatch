@@ -1,4 +1,4 @@
-package jp.co.casleyconsulting.www.nurseryVacancy.extactor;
+package jp.co.casleyconsulting.www.nurseryVacancy.extactor.vacancy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +11,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * 練馬区用Extractor
- *
  * @author FUJIWARA
- *
+ * 
  */
-public class NerimaExtractor extends GeneralExtractor {
+public class TaitoExtractor extends GeneralExtractor {
 
 	/*
 	 * (非 Javadoc)
@@ -33,27 +31,23 @@ public class NerimaExtractor extends GeneralExtractor {
 
 		for (Element table : tables) {
 			Elements trs = table.getElementsByTag("tr");
-			List<Element> trsList = trs.subList(3, trs.size());
-
+			List<Element> trsList = trs.subList(1, trs.size());
 			for (Element tr : trsList) {
 
 				Elements tds = tr.getElementsByTag("td");
 
-				String name = tds.get(0).select("a").text();
-				if (tds.size() > 10 && StringUtils.isNotEmpty(name)) {
-
-					if (name.trim().equals("延長保育")) {
-						break;
-					}
+				if (tds.size() > 5 && StringUtils.isNotEmpty(tds.get(1).text())) {
 
 					NurseryVacancyInfo info = new NurseryVacancyInfo();
-					info.name = tds.get(0).select("a").text();
-					info.zeroCnt = tds.get(3).text().trim();
-					info.firstCnt = tds.get(4).text().trim();
-					info.secondCnt = tds.get(5).text().trim();
-					info.thirdCnt = tds.get(6).text().trim();
-					info.fourthCnt = tds.get(7).text().trim();
-					info.fifthCnt = tds.get(8).text().trim();
+
+					info.name = tds.get(0).text();
+
+					info.zeroCnt = tds.get(1).text().trim();
+					info.firstCnt = tds.get(2).text().trim();
+					info.secondCnt = tds.get(3).text().trim();
+					info.thirdCnt = tds.get(4).text().trim();
+					info.fourthCnt = tds.get(5).text().trim();
+					info.fifthCnt = tds.get(6).text().trim();
 
 					resList.add(info);
 				}
