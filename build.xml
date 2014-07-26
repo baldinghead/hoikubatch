@@ -1,0 +1,20 @@
+<project name="whiphoiku-bat" default="build" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+	<property file="build.properties" />
+
+	<target name="build">
+		<ivy:retrieve />
+		<jar basedir="${classDir}" jarfile="${distLibDir}/${relJarName}" />
+	</target>
+
+	<target name="install-to-web">
+		<antcall target="build"></antcall>
+		<copy todir="../whiphoiku/war/WEB-INF/lib">
+			<fileset dir="lib" includes="*.jar">
+				<exclude name="**/*source*" />
+				<exclude name="**/*javadoc*" />
+				<exclude name="**/*junit*" />
+			</fileset>
+		</copy>
+	</target>
+
+</project>
