@@ -3,6 +3,7 @@ package jp.co.casleyconsulting.www.nurseryVacancy.extactor.vacancy;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.co.casleyconsulting.www.nurseryVacancy.constants.ExtractType;
 import jp.co.casleyconsulting.www.nurseryVacancy.dto.NurseryVacancyInfo;
 
 import org.apache.commons.lang3.StringUtils;
@@ -39,6 +40,7 @@ public class SetagayaExtractor extends GeneralExtractor {
 				if (tds.size() > 5 && StringUtils.isNotEmpty(tds.get(1).text())) {
 
 					NurseryVacancyInfo info = new NurseryVacancyInfo();
+					info.extractType = ExtractType.SETAGAYA;
 					info.name = tds.get(1).text();
 					info.zeroCnt = tds.get(4).text().trim();
 					info.firstCnt = tds.get(5).text().trim();

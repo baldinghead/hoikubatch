@@ -3,6 +3,7 @@ package jp.co.casleyconsulting.www.nurseryVacancy.extactor.vacancy;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.co.casleyconsulting.www.nurseryVacancy.constants.ExtractType;
 import jp.co.casleyconsulting.www.nurseryVacancy.dto.NurseryVacancyInfo;
 
 import org.apache.commons.lang3.StringUtils;
@@ -37,7 +38,8 @@ public class NakanoExtractor extends GeneralExtractor {
 			if (tds.size() > 5 && StringUtils.isNotEmpty(tds.get(1).text())) {
 
 				NurseryVacancyInfo info = new NurseryVacancyInfo();
-				info.name = tds.get(0).text();
+				info.extractType = ExtractType.NAKANO;
+				info.name = tds.get(0).text().trim();
 				info.zeroCnt = tds.get(1).text().trim();
 				info.firstCnt = tds.get(2).text().trim();
 				info.secondCnt = tds.get(3).text().trim();

@@ -3,6 +3,7 @@ package jp.co.casleyconsulting.www.nurseryVacancy.extactor.vacancy;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.co.casleyconsulting.www.nurseryVacancy.constants.ExtractType;
 import jp.co.casleyconsulting.www.nurseryVacancy.dto.NurseryVacancyInfo;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,7 +13,7 @@ import org.jsoup.select.Elements;
 
 /**
  * @author FUJIWARA
- *
+ * 
  */
 public class MinatoExtractor extends GeneralExtractor {
 
@@ -38,7 +39,7 @@ public class MinatoExtractor extends GeneralExtractor {
 
 			Elements tds = tr.getElementsByTag("td");
 
-			if (StringUtils.isNotEmpty(tds.get(1).text()) && tds.size() >= 7) {
+			if (tds.size() >= 7 && StringUtils.isNotEmpty(tds.get(1).text())) {
 
 				if (tds.size() == 9) {
 					// 区立とか私立とか入ってきた場合は一つ目の要素を削除
@@ -46,7 +47,8 @@ public class MinatoExtractor extends GeneralExtractor {
 				}
 
 				NurseryVacancyInfo info = new NurseryVacancyInfo();
-				info.name = tds.get(0).text();
+				info.extractType = ExtractType.MINATO;
+				info.name = tds.get(0).text().trim();
 				info.zeroCnt = tds.get(2).text().trim();
 				info.firstCnt = tds.get(3).text().trim();
 				info.secondCnt = tds.get(4).text().trim();

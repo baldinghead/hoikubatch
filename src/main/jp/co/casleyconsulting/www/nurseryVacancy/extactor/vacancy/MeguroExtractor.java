@@ -3,6 +3,7 @@ package jp.co.casleyconsulting.www.nurseryVacancy.extactor.vacancy;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.co.casleyconsulting.www.nurseryVacancy.constants.ExtractType;
 import jp.co.casleyconsulting.www.nurseryVacancy.dto.NurseryVacancyInfo;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,7 +13,7 @@ import org.jsoup.select.Elements;
 
 /**
  * @author FUJIWARA
- *
+ * 
  */
 public class MeguroExtractor extends GeneralExtractor {
 
@@ -42,6 +43,7 @@ public class MeguroExtractor extends GeneralExtractor {
 			if (StringUtils.isNotEmpty(tds.get(2).text())) {
 
 				NurseryVacancyInfo info = new NurseryVacancyInfo();
+				info.extractType = ExtractType.MEGURO;
 				info.name = cleanse(tds.get(0).text());
 				info.zeroCnt = cleanse(tds.get(1).text());
 				info.firstCnt = cleanse(tds.get(2).text());
